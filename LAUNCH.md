@@ -95,13 +95,22 @@ statistics about its past. The owner must agree to stand behind them:
 | `VITE_GOOGLE_ADS_LEAD_LABEL` | Quote-form conversion (`AW-xxx/yyy`) |
 | `VITE_META_PIXEL_ID` | Meta Pixel + Lead / InitiateCheckout / Contact events |
 
-## 7. Deploy (Railway, same recipe as Evo)
+## 7. Deploy (Railway — LIVE)
 
-- New Railway service from this repo. Nixpacks; `railway.json` already sets
-  `NITRO_PRESET=node-server npm run build` and the start command.
-- Env: `VITE_SHOPFLOW_API_URL`, `VITE_SHOPFLOW_SHOP_SLUG`, `VITE_SITE_URL`,
-  plus any analytics IDs. All are baked in at BUILD time — redeploy after
-  changing them.
+- Service `street-soundz-website` in the **The ShopFlow** Railway project
+  (same project as Evo-Solutions and the platform), deployed from
+  github.com/adub7k/street-soundz-website `main`. Every push redeploys.
+- Public URL until a domain is bought:
+  https://street-soundz-website-production.up.railway.app
+- Env set on the service (2026-09-14): `VITE_SHOPFLOW_API_URL`,
+  `VITE_SHOPFLOW_SHOP_SLUG=street-soundz-nm` (the slug the admin "create shop"
+  endpoint will generate from the name "Street Soundz NM" — if the tenant ends
+  up with a different slug, change this and redeploy), `VITE_SITE_URL`
+  (placeholder railway.app URL — set to the real domain when it exists),
+  `NITRO_PRESET=node-server`. Analytics IDs not set. All are baked in at
+  BUILD time — a variable change triggers a rebuild automatically.
+- Custom domain: `railway domain <domain>` on this service, then point the
+  registrar at it (apex → www redirect like Evo).
 - Gotchas inherited from Evo: no bun lockfiles, `.npmrc` has `force=true`,
   don't use `npm ci` in the build command, `engines.node >= 22`.
 - Domain: apex → www redirect at the registrar; Railway serves www.
