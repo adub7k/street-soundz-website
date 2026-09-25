@@ -140,6 +140,13 @@ export function Footer() {
             Serving {site.serviceArea.primary}
             {site.serviceArea.nearby.length ? ` and ${site.serviceArea.nearby.join(", ")}` : ""}.
           </p>
+          <p>
+            Marketing by{" "}
+            <a href="https://shopflowtech.com/" target="_blank" rel="noopener" className="underline underline-offset-2 hover:text-foreground">
+              ShopFlow Technologies
+            </a>
+            , Albuquerque.
+          </p>
         </div>
       </div>
     </footer>
